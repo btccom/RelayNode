@@ -65,7 +65,7 @@ struct relay_msg_header {
 static_assert(sizeof(struct relay_msg_header) == 3*4, "relay_msg_header is 12 bytes");
 
 #define RELAY_MAGIC_BYTES htonl(0xF2BEEF42)
-#define VERSION_STRING "what i should have done"
+#define VERSION_STRING "spammy memeater"
 #define MAX_RELAY_TRANSACTION_BYTES 100000
 #define MAX_FAS_TOTAL_SIZE 5000000
 
