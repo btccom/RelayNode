@@ -117,7 +117,7 @@ private:
 		if (their_version != "the blocksize")
 			sendSponsor = true;
 
-		relay_msg_header version_header = { RELAY_MAGIC_BYTES, VERSION_TYPE, uint32_t(their_version.length()) };
+		relay_msg_header version_header = { RELAY_MAGIC_BYTES, VERSION_TYPE, htonl(their_version.length()) };
 		Connection::do_send_bytes((char*)&version_header, sizeof(version_header));
 		Connection::do_send_bytes(their_version.c_str(), their_version.length());
 
