@@ -63,7 +63,7 @@ ssize_t P2PRelayer::read_msg_header(char* buf, size_t len) {
 		if (read_header.length > 5000000)
 			return read_err(this, "got message too large");
 
-		size_t read_msg_start_offset = (!strncmp(read_header.command, "block", strlen("block"))) ? sizeof(struct bitcoin_msg_header) : 0;
+		read_msg_start_offset = (!strncmp(read_header.command, "block", strlen("block"))) ? sizeof(struct bitcoin_msg_header) : 0;
 		read_msg = std::make_shared<std::vector<unsigned char> >(read_msg_start_offset + read_header.length);
 	}
 	return read_bytes;
