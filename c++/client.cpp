@@ -103,9 +103,7 @@ private:
 	}
 
 	void handle_transaction(std::shared_ptr<std::vector<unsigned char> >& tx) {
-		if (bitcoind_connected())
-			printf("Received transaction of size %lu from relay server\n", (unsigned long)tx->size());
-		else
+		if (!bitcoind_connected())
 			printf("ERROR: bitcoind is not (yet) connected!\n");
 
 		provide_transaction(tx);
@@ -158,8 +156,6 @@ public:
 		auto& msg = *msgptr.get();
 
 		maybe_do_send_bytes((char*)&msg[0], msg.size());
-		if (bitcoind_connected())
-			printf("Sent transaction of size %lu%s to relay server\n", (unsigned long)tx->size(), send_oob ? " (out-of-band)" : "");
 	}
 
 	void receive_block(const std::vector<unsigned char>& block) {
